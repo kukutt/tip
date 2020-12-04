@@ -1,0 +1,33 @@
+https://blog.51cto.com/bluetom/1730895
+
+# set gpt
+sudo parted /dev/sda
+---> mklabel gpt
+sudo gdisk -l  /dev/sdb
+#####ok msg######
+Partition table scan:
+  MBR: protective
+  BSD: not present
+  APM: not present
+  GPT: present
+#################
+
+
+# add sdb1 to EF00
+sudo gdisk  /dev/sdb
+--->n 1 2048 +100M EF00
+--->p
+--->w
+sudo mkfs.fat /dev/sdb1
+
+# install grub
+sudo mount /dev/sdb1 ./aa/
+sudo grub-install --target x86_64-efi --efi-directory ./aa/ --boot-directory ./aa/boot --removable
+sudo cp ubuntu_to_go/grub.cfg ./aa/boot/grub/
+sudo umount ./aa/
+
+# ubuntu
+
+## bk
+sudo dd if=/dev/sdb2 | gzip -6 > ubuntu.img.gz
+sudo gzip -dc ubuntu.img.gz | dd of=/dev/sdb2
