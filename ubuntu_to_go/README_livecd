@@ -1,0 +1,41 @@
+https://blog.csdn.net/qq_39591494/article/details/88674694
+https://www.cnblogs.com/dcb3688/p/4610658.html
+
+# install
+## ppa
+添加源1:  
+```/etc/apt/sources.list
+deb http://ppa.launchpad.net/nemh/systemback/ubuntu xenial main
+# deb-src http://ppa.launchpad.net/nemh/systemback/ubuntu xenial main
+```
+添加源2: 
+sudo add-apt-repository "deb http://ppa.launchpad.net/nemh/systemback/ubuntu xenial main"
+
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 382003C2C8B7B4AB813E915B14E4942973C62A1B
+sudo apt install systemback
+
+
+##
+
+
+# 4G 问题
+
+## 1
+```
+mv sblive/syslinux/syslinux.cfg sblive/syslinux/isolinux.cfg
+mv sblive/syslinux sblive/isolinux
+``` 
+
+## 2
+```
+aria2c -s 10 https://nchc.dl.sourceforge.net/project/cdrtools/alpha/cdrtools-3.02a07.tar.gz
+tar -xzvf cdrtools-3.02a07.tar.gz
+cd cdrtools-3.02
+make
+sudo make install
+```
+
+## 3
+```
+/opt/schily/bin/mkisofs -iso-level 3 -r -V sblive -cache-inodes -J -l -b isolinux/isolinux.bin -no-emul-boot -boot-load-size 4 -boot-info-table -c isolinux/boot.cat -o sblive.iso sblive
+```
