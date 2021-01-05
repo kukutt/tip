@@ -1,7 +1,7 @@
 https://blog.51cto.com/bluetom/1730895
 
 # set gpt
-sudo parted /dev/sda
+sudo parted /dev/sdb
 ---> mklabel gpt
 sudo gdisk -l  /dev/sdb
 #####ok msg######
