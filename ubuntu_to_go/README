@@ -21,6 +21,7 @@ sudo gdisk  /dev/sdb
 sudo mkfs.fat /dev/sdb1
 
 # install grub
+sudo apt-get install grub-efi
 sudo mount /dev/sdb1 ./aa/
 sudo grub-install --target x86_64-efi --efi-directory ./aa/ --boot-directory ./aa/boot --removable
 sudo cp ubuntu_to_go/grub.cfg ./aa/boot/grub/
