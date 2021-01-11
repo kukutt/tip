@@ -1,0 +1,10 @@
+# 上下左右
+sudo apt-get remove vim-common  
+sudo apt-get install vim
+
+# tab 空格
+===.vimrc
+set ts=4
+set expandtab
+======
+

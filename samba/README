@@ -1,0 +1,24 @@
+# step 1
+sudo apt-get install samba samba-common
+
+# step 2
+======/etc/samba/smb.conf
+[share]
+comment = share folder
+browseable = yes
+path = /home/panyao
+create mask = 0700
+directory mask = 0700
+valid users = panyao
+force user = panyao
+force group = panyao
+public = yes
+available = yes
+writable = yes
+=========
+# step 3
+sudo smbpasswd -a panyao
+
+# step 4
+sudo /etc/init.d/smbd restart
+ 
