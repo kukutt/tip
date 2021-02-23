@@ -8,3 +8,4 @@ git commit -m "first commit"
 git branch -M main
 [ x"$1" = x ] || git remote add origin http://github.com/$1/actions.git
 [ x"$1" = x ] || git push -u origin main 
+rm -rf .git .github ~/.git-credentials
