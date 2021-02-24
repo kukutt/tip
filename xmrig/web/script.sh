@@ -11,8 +11,10 @@ jspoolcmd="-p id-$jsid -k"
 echo $jswallet $jsxmrigname $jssleeptime $jspoolserver $jspoolcmd
 
 [ -n "$LOCALTEST" ] || sudo apt-get install libuv1-dev libssl-dev libhwloc-dev -y
+
 echo "timeout $jssleeptime ./xmrig -o $jspoolserver -u $jswallet $jspoolcmd"
-timeout $jssleeptime ./xmrig -o $jspoolserver -u $jswallet $jspoolcmd
-killall xmrig
+[ x"$1" == "xrun" ] && timeout $jssleeptime ./xmrig -o $jspoolserver -u $jswallet $jspoolcmd
+echo aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+#[ x"$1" == "xrun" ] && killall xmrig
 
 echo ===============================  end  ===============================
