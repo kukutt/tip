@@ -1,6 +1,21 @@
 # 环境设置
+## vps上肯需要设置虚拟内存
+```
+# 设置
+sudo dd if=/dev/zero of=/swap bs=1M count=4096
+sudo mkswap /swap
+sudo swapon /swap
+
+# 取消
+sudo swapoff /swap
+sudo rm -rf /swap
+
+```
+
 ## flutter
+```
 git clone https://github.com/flutter/flutter.git -b stable --depth 1
+```
 ## jdk
 去[官网](https://www.oracle.com/java/technologies/javase-downloads.html)下载
 目前使用[jdk8](https://www.oracle.com/java/technologies/javase/javase-jdk8-downloads.html)可以使用
