@@ -1,0 +1,5 @@
+# 环境配置
+export ANDROID_SDK_ROOT=$PWD/sdk/
+wget https://dl.google.com/android/repository/commandlinetools-linux-6858069_latest.zip
+unzip commandlinetools-linux-6858069_latest.zip
+./cmdline-tools/bin/sdkmanager --sdk_root=$ANDROID_SDK_ROOT "cmdline-tools;latest"
